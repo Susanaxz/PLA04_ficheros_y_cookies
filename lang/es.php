@@ -55,6 +55,16 @@ $footer = [
     'footer1' => 'Comparte en:'
 ];
 
-return ['traducciones' => $traducciones, 'header' => $header, 'nav' => $nav, 'footer' => $footer];
+$translations = [
+
+    'nombre' => 'Nombre',
+    'email' => 'Email',
+    'mensaje' => 'Mensaje',
+    'privacidad' => 'Es obligatorio aceptar la normativa de privacidad',
+    'porfavor' => 'Por favor revise los siguientes datos:<br>',
+    'mailValido' => 'Por favor, introduzca una dirección de correo válida.'
+];
+
+return ['traducciones' => $traducciones, 'header' => $header, 'nav' => $nav, 'footer' => $footer, 'translations' => $translations];
 
 ?>

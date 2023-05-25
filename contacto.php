@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-
+<script>
+	var translations = <?php echo json_encode($translations); ?>;
+</script>
 <?php
 
 // idiomas contemplados
@@ -24,19 +26,25 @@ if (isset($_GET['lang']) && in_array($_GET['lang'], $idiomas)) {
 // guardar el idioma seleccionado en una cookie
 setcookie('lang', $language, time() + (86400 * 30), "/");
 
-// obtener el idioma de la cookie
-$language = isset($_COOKIE['lang']) ? $_COOKIE['lang'] : 'es';
+// // obtener el idioma de la cookie
+// $language = isset($_COOKIE['lang']) ? $_COOKIE['lang'] : 'es';
+
+// obtener el idioma de la cookie y validar
+$language = isset($_COOKIE['lang']) && in_array($_COOKIE['lang'], $idiomas) ? $_COOKIE['lang'] : $language_default;
 
 // Cargar el archivo de idioma correspondiente al idioma actual
-$language = 'lang/' . $language . '.php'; // Ruta al archivo de idioma según el idioma actual
-if (file_exists($language)) {
-	$loaded = require $language;
+$language_file = 'lang/' . $language . '.php'; // Ruta al archivo de idioma según el idioma actual
+if (file_exists($language_file)) {
+	$loaded = require $language_file;
 	$traducciones = $loaded['traducciones'];
 	$header = $loaded['header'];
 	$nav = $loaded['nav'];
 	$footer = $loaded['footer'];
+	$translations = $loaded['translations'];
 } else {
-	$traducciones = require 'lang/es.php'; // Cargar el idioma por defecto en caso de error
+	$loaded = require 'lang/es.php'; // Cargar el idioma por defecto en caso de error
+	$traducciones = $loaded['traducciones'];
+	$translations = $loaded['translations'];
 }
 ?>
 
@@ -49,7 +57,7 @@ if (file_exists($language)) {
 	<link rel="stylesheet" href="css/styles.css" type="text/css" />
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 	<script src="js/page.js" type="text/javascript"></script>
-	<script src="js/form.js" type="text/javascript"></script>
+		<!-- <script src="js/form.js" type="text/javascript"></script> -->
 </head>
 
 <body>
@@ -95,6 +103,12 @@ if (file_exists($language)) {
 			<?php include 'html/footer.html'; ?>
 		</footer>
 	</div>
+
+	<script>
+		var translations = <?php echo json_encode($translations); ?>;
+	</script>
+	<script src="js/form.js" type="text/javascript"></script>
+</body>
 </body>
 
 </html>

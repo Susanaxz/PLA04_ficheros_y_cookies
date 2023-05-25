@@ -33,8 +33,6 @@ $traducciones = [
         'alerta' => "En compliment de la LLei Orgànica 15/1999, de 13 de decembre, de Protecció de Dades de Caràcter Personal (LOPD), l'informem que les dades de caràcter personal que vostè ens comuniqui mitjançant aquest formulari de contacte seràn confidencials i, sota cap concepte seràn transmeses a terceres persones.",
     ]
 
-
-
 ];
 
 
@@ -55,7 +53,17 @@ $footer = [
     'footer1' => 'Comparteix a:'
 ];
 
+$translations = [
+    'nombre' => 'Nom',
+    'email' => 'Email',
+    'mensaje' => 'Missatge',
+    'privacidad' => 'Es obligatori acceptar la normativa de privacitat',
+    'porfavor' => "Si us plau revisi les següents dades:",
+    'mailValido' => 'Si us plau introdueixi una adreça de correu electrónic vàlida.'
+
+];
+
 // devolvemos un array con las traducciones y los textos del header, nav y footer
-return ['traducciones' => $traducciones, 'header' => $header, 'nav' => $nav, 'footer' => $footer];
+return ['traducciones' => $traducciones, 'header' => $header, 'nav' => $nav, 'footer' => $footer, 'translations' => $translations];
 
 ?>
