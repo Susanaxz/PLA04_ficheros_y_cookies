@@ -1,8 +1,29 @@
 <!DOCTYPE html>
 <html>
 
-
 <?php
+
+// idiomas contemplados
+$idiomas = array('es', 'ca');
+
+// idioma por defecto
+$language_default = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
+// idioma seleccionado válido
+if (isset($_GET['lang']) && in_array($_GET['lang'], $idiomas)) {
+	$language = $_GET['lang'];
+	setcookie('lang', $language, time() + (86400 * 30), "/");
+	if (isset($_GET['uri'])) {
+		header('Location: ' . $_GET['uri']);
+		exit;
+	}
+} else {
+	$language = isset($_COOKIE['lang']) ? $_COOKIE['lang'] : $language_default;
+}
+
+// guardar el idioma seleccionado en una cookie
+setcookie('lang', $language, time() + (86400 * 30), "/");
+
 // obtener el idioma de la cookie
 $language = isset($_COOKIE['lang']) ? $_COOKIE['lang'] : 'es';
 

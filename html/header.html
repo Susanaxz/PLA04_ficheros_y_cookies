@@ -1,31 +1,15 @@
 <header>
-    <?php
-        // idioma contemplados
-        $idiomas = array('es', 'ca');
-
-        // idioma por defecto
-        $language_default = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-
-        // idioma seleccionado válido
-        if (isset($_GET['lang']) && in_array($_GET['lang'], $idiomas)) {
-            $language = $_GET['lang'];
-        } else {
-            $language = $language_default;
-        }
-
-        // guardar el idioma seleccionado en una cookie
-        setcookie('lang', $language, time() + (86400 * 30), "/");
-        ?>
+    
 
     <img src="img/IEM_logo.png">
     <h1><?php echo $header['insti']; ?></h1>
 
     <div class="idiomas">
-        <a href="index.php?lang=es<?php if(isset($_GET['page'])) echo '&page=' . $_GET['page']; ?>" class="bandera"><img
-                src="img/es.png" alt="castellano"></a>
-        
-        <a href="index.php?lang=ca<?php if(isset($_GET['page'])) echo '&page=' . $_GET['page']; ?>" class="bandera"><img
-                src="img/ca.png" alt="catalan"></a>
+        <a href="?lang=es<?php echo '&uri=' . $_SERVER['REQUEST_URI']; ?>" class="bandera"><img src="img/es.png"
+                alt="castellano"></a>
+        <a href="?lang=ca<?php echo '&uri=' . $_SERVER['REQUEST_URI']; ?>" class="bandera"><img src="img/ca.png"
+                alt="catalan"></a>
+
 
 
 </header>
