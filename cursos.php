@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
 
+<?php
+// obtener el idioma de la cookie
+$language = isset($_COOKIE['lang']) ? $_COOKIE['lang'] : 'es';
+
+// Cargar el archivo de idioma correspondiente al idioma actual
+$language = 'lang/' . $language . '.php'; // Ruta al archivo de idioma según el idioma actual
+if (file_exists($language)) {
+	$loaded = require $language;
+	$traducciones = $loaded['traducciones'];
+	$header = $loaded['header'];
+	$nav = $loaded['nav'];
+	$footer = $loaded['footer'];
+} else {
+	$traducciones = require 'lang/es.php'; // Cargar el idioma por defecto en caso de error
+}
+?>
+
 <head>
 	<title>IEM</title>
 	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="css/page.css" type="text/css" />
+	<link rel="stylesheet" href="css/styles.css" type="text/css" />
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 	<script src="js/page.js" type="text/javascript"></script>
 </head>
@@ -25,25 +43,25 @@
 			</div>
 
 			<div class="sections" id="cursos">
-				<h1>Idiomas (desde los 4 años).</h1>
+				<h1><?php echo $traducciones['cursos']['cursos']  ?></h1>
 
-				<p>Horarios de mañana, tarde, noche y sábados mañana.</p>
+				<p><?php echo $traducciones['cursos']['horarios']  ?></p>
 
-				<p>Grupos homogéneos, agrupados por edades y niveles</p>
+				<p><?php echo $traducciones['cursos']['grupos1']  ?></p>
 
-				<p>Grupos reducidos.</p>
+				<p><?php echo $traducciones['cursos']['grupos2']  ?></p>
 
-				<p>Preparación de los exámenes de la Univesidad de Cambridge o de la Escuela Oficial de idiomas.</p>
+				<p><?php echo $traducciones['cursos']['preparacion']  ?></p><br>
 
-				<h1>Refuerzo escolar de todas las materias</h1>
+				<h1><?php echo $traducciones['cursos']['refuerzo']  ?></h1>
 
-				<p>Para todos los niveles escolares</p>
+				<p><?php echo $traducciones['cursos']['niveles']  ?></p>
 
-				<p>Trabajamos con los libros que utilizan los alumnos</p>
+				<p><?php echo $traducciones['cursos']['libros']  ?></p>
 
-				<p>Seguimiento personalizado.</p>
+				<p><?php echo $traducciones['cursos']['seguimiento']  ?></p>
 
-				<p>Técnicas de estudio.</p>
+				<p><?php echo $traducciones['cursos']['tecnicas']  ?></p>
 
 			</div>
 		</div>

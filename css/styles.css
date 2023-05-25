@@ -1,0 +1,11 @@
+.idiomas {
+    display: flex;
+    gap: 15px;
+
+}
+
+.bandera img {
+    width: 25px;
+    height: auto;
+    margin-top: 5px;
+}
